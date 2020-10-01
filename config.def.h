@@ -68,18 +68,6 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
- * 1: render most of the lines/blocks characters without using the font for
- *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
- *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
- * 0: disable (render all U25XX glyphs normally from the font).
- */
-const int boxdraw = 1;
-const int boxdraw_bold = 1;
-
-/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 1;
-
-/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
@@ -104,9 +92,6 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
-
-/* bg opacity */
-float alpha = 0.4;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -135,7 +120,6 @@ static const char *colorname[] = {
 	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"black",
 };
 
 
@@ -143,8 +127,8 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
-unsigned int defaultbg = 258;
+unsigned int defaultfg = 7;
+unsigned int defaultbg = 0;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
@@ -185,51 +169,16 @@ static unsigned int defaultattr = 11;
 static uint forcemousemod = ShiftMask;
 
 /*
- * Xresources preferences to load at startup
- */
-ResourcePref resources[] = {
-		{ "font",         STRING,  &font },
-		{ "color0",       STRING,  &colorname[0] },
-		{ "color1",       STRING,  &colorname[1] },
-		{ "color2",       STRING,  &colorname[2] },
-		{ "color3",       STRING,  &colorname[3] },
-		{ "color4",       STRING,  &colorname[4] },
-		{ "color5",       STRING,  &colorname[5] },
-		{ "color6",       STRING,  &colorname[6] },
-		{ "color7",       STRING,  &colorname[7] },
-		{ "color8",       STRING,  &colorname[8] },
-		{ "color9",       STRING,  &colorname[9] },
-		{ "color10",      STRING,  &colorname[10] },
-		{ "color11",      STRING,  &colorname[11] },
-		{ "color12",      STRING,  &colorname[12] },
-		{ "color13",      STRING,  &colorname[13] },
-		{ "color14",      STRING,  &colorname[14] },
-		{ "color15",      STRING,  &colorname[15] },
-		{ "background",   STRING,  &colorname[256] },
-		{ "foreground",   STRING,  &colorname[257] },
-		{ "cursorColor",  STRING,  &colorname[258] },
-		{ "termname",     STRING,  &termname },
-		{ "shell",        STRING,  &shell },
-		{ "minlatency",   INTEGER, &minlatency },
-		{ "maxlatency",   INTEGER, &maxlatency },
-		{ "blinktimeout", INTEGER, &blinktimeout },
-		{ "bellvolume",   INTEGER, &bellvolume },
-		{ "tabspaces",    INTEGER, &tabspaces },
-		{ "borderpx",     INTEGER, &borderpx },
-		{ "cwscale",      FLOAT,   &cwscale },
-		{ "chscale",      FLOAT,   &chscale },
-		{ "alpha",        FLOAT,   &alpha },
-};
-
-/*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-        { XK_ANY_MOD,           Button4, kscrollup,       {.i = 3} },
-        { XK_ANY_MOD,           Button5, kscrolldown,     {.i = 3} },
+	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -250,8 +199,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
@@ -442,17 +389,17 @@ static Key key[] = {
 	{ XK_F5,            XK_NO_MOD,      "\033[15~",      0,    0},
 	{ XK_F5, /* F17 */  ShiftMask,      "\033[15;2~",    0,    0},
 	{ XK_F5, /* F29 */  ControlMask,    "\033[15;5~",    0,    0},
-	{ XK_F5, /* F41 */  Mod4Mask,       "\033[15~",    0,    0},
+	{ XK_F5, /* F41 */  Mod4Mask,       "\033[15;6~",    0,    0},
 	{ XK_F5, /* F53 */  Mod1Mask,       "\033[15;3~",    0,    0},
 	{ XK_F6,            XK_NO_MOD,      "\033[17~",      0,    0},
 	{ XK_F6, /* F18 */  ShiftMask,      "\033[17;2~",    0,    0},
 	{ XK_F6, /* F30 */  ControlMask,    "\033[17;5~",    0,    0},
-	{ XK_F6, /* F42 */  Mod4Mask,       "\033[17~",    0,    0},
+	{ XK_F6, /* F42 */  Mod4Mask,       "\033[17;6~",    0,    0},
 	{ XK_F6, /* F54 */  Mod1Mask,       "\033[17;3~",    0,    0},
 	{ XK_F7,            XK_NO_MOD,      "\033[18~",      0,    0},
 	{ XK_F7, /* F19 */  ShiftMask,      "\033[18;2~",    0,    0},
 	{ XK_F7, /* F31 */  ControlMask,    "\033[18;5~",    0,    0},
-	{ XK_F7, /* F43 */  Mod4Mask,       "\033[18~",    0,    0},
+	{ XK_F7, /* F43 */  Mod4Mask,       "\033[18;6~",    0,    0},
 	{ XK_F7, /* F55 */  Mod1Mask,       "\033[18;3~",    0,    0},
 	{ XK_F8,            XK_NO_MOD,      "\033[19~",      0,    0},
 	{ XK_F8, /* F20 */  ShiftMask,      "\033[19;2~",    0,    0},

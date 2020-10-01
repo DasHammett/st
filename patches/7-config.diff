@@ -1,0 +1,80 @@
+--- ../config.def.h	2020-10-01 22:33:58.859896295 +0200
++++ config.def.h	2020-10-01 22:30:50.719896367 +0200
+@@ -73,11 +73,11 @@
+  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
+  * 0: disable (render all U25XX glyphs normally from the font).
+  */
+-const int boxdraw = 0;
+-const int boxdraw_bold = 0;
++const int boxdraw = 1;
++const int boxdraw_bold = 1;
+ 
+ /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
+-const int boxdraw_braille = 0;
++const int boxdraw_braille = 1;
+ 
+ /*
+  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
+@@ -106,7 +106,7 @@
+ unsigned int tabspaces = 8;
+ 
+ /* bg opacity */
+-float alpha = 0.8;
++float alpha = 0.4;
+ 
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+@@ -143,7 +143,7 @@
+  * Default colors (colorname index)
+  * foreground, background, cursor, reverse cursor
+  */
+-unsigned int defaultfg = 7;
++unsigned int defaultfg = 15;
+ unsigned int defaultbg = 258;
+ static unsigned int defaultcs = 256;
+ static unsigned int defaultrcs = 257;
+@@ -218,6 +218,7 @@
+ 		{ "borderpx",     INTEGER, &borderpx },
+ 		{ "cwscale",      FLOAT,   &cwscale },
+ 		{ "chscale",      FLOAT,   &chscale },
++		{ "alpha",        FLOAT,   &alpha },
+ };
+ 
+ /*
+@@ -226,13 +227,9 @@
+  */
+ static MouseShortcut mshortcuts[] = {
+ 	/* mask                 button   function        argument       release */
+-	{ ShiftMask,            Button4, kscrollup,      {.i = 1} },
+-	{ ShiftMask,            Button5, kscrolldown,    {.i = 1} },
+ 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+-	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+-	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
++        { XK_ANY_MOD,           Button4, kscrollup,       {.i = 3} },
++        { XK_ANY_MOD,           Button5, kscrolldown,     {.i = 3} },
+ };
+ 
+ /* Internal keyboard shortcuts. */
+@@ -445,17 +442,17 @@
+ 	{ XK_F5,            XK_NO_MOD,      "\033[15~",      0,    0},
+ 	{ XK_F5, /* F17 */  ShiftMask,      "\033[15;2~",    0,    0},
+ 	{ XK_F5, /* F29 */  ControlMask,    "\033[15;5~",    0,    0},
+-	{ XK_F5, /* F41 */  Mod4Mask,       "\033[15;6~",    0,    0},
++	{ XK_F5, /* F41 */  Mod4Mask,       "\033[15~",    0,    0},
+ 	{ XK_F5, /* F53 */  Mod1Mask,       "\033[15;3~",    0,    0},
+ 	{ XK_F6,            XK_NO_MOD,      "\033[17~",      0,    0},
+ 	{ XK_F6, /* F18 */  ShiftMask,      "\033[17;2~",    0,    0},
+ 	{ XK_F6, /* F30 */  ControlMask,    "\033[17;5~",    0,    0},
+-	{ XK_F6, /* F42 */  Mod4Mask,       "\033[17;6~",    0,    0},
++	{ XK_F6, /* F42 */  Mod4Mask,       "\033[17~",    0,    0},
+ 	{ XK_F6, /* F54 */  Mod1Mask,       "\033[17;3~",    0,    0},
+ 	{ XK_F7,            XK_NO_MOD,      "\033[18~",      0,    0},
+ 	{ XK_F7, /* F19 */  ShiftMask,      "\033[18;2~",    0,    0},
+ 	{ XK_F7, /* F31 */  ControlMask,    "\033[18;5~",    0,    0},
+-	{ XK_F7, /* F43 */  Mod4Mask,       "\033[18;6~",    0,    0},
++	{ XK_F7, /* F43 */  Mod4Mask,       "\033[18~",    0,    0},
+ 	{ XK_F7, /* F55 */  Mod1Mask,       "\033[18;3~",    0,    0},
+ 	{ XK_F8,            XK_NO_MOD,      "\033[19~",      0,    0},
+ 	{ XK_F8, /* F20 */  ShiftMask,      "\033[19;2~",    0,    0},
