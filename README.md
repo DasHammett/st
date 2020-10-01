@@ -4,20 +4,21 @@ Yet another [suckless st terminal](https://st.suckless.org/) custom version
 ## What this is
 
 This is a custom build of the suckless st terminal with patches applied and custom configuration. This repo consists of the vanilla st-0.8.4 and the patches to apply to the source code.
+One advantage over other repos with the patches applied is that here you _can_ apply more patches. You will, most likely, need to change the patch order and/or resolve conflicts.
 
 
 ## What patches are in this repo?
 The following patches are available:
 * [Alpha](https://st.suckless.org/patches/alpha/) (controlled in .Xresources)
-* [Scrollback](https://st.suckless.org/patches/scrollback/)(shift+arrows)
-* [Scrollback mouse](https://st.suckless.org/patches/scrollback/)(no MOD key required)
+* [Scrollback](https://st.suckless.org/patches/scrollback/) (shift+arrows)
+* [Scrollback mouse](https://st.suckless.org/patches/scrollback/) (no MOD key required)
 * [Boxdraw](https://st.suckless.org/patches/boxdraw/)
 * [Xresources](https://st.suckless.org/patches/xresources/)
 * [Ligatures](https://st.suckless.org/patches/ligatures/)*
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
-Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved.
+*Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved.
 
 Patch `7-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
 
