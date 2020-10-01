@@ -1,5 +1,5 @@
 # st
-Yet another [suckless st terminal](https://st.suckless.org/) st terminal custom version
+Yet another [suckless st terminal](https://st.suckless.org/) custom version
 
 ## What this is
 
