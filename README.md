@@ -8,14 +8,19 @@ This is a custom build of the suckless st terminal with patches applied and cust
 
 ## What patches are in this repo?
 The following patches are available:
-* Alpha (controlled in .Xresources)
-* Scrollback (shift+arrows)
-* Scrollback mouse (no MOD key required)
-* Boxdraw
-* Xresources
-* Ligatures
+* [Alpha](https://st.suckless.org/patches/alpha/) (controlled in .Xresources)
+* [Scrollback](https://st.suckless.org/patches/scrollback/)(shift+arrows)
+* [Scrollback mouse](https://st.suckless.org/patches/scrollback/)(no MOD key required)
+* [Boxdraw](https://st.suckless.org/patches/boxdraw/)
+* [Xresources](https://st.suckless.org/patches/xresources/)
+* [Ligatures](https://st.suckless.org/patches/ligatures/)*
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
+
+Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved.
+
+Patch `7-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
+
 
 ## Installation for dummies
 ```
@@ -53,6 +58,6 @@ These are global settings, it is also possible to configure them for just st by 
 (```st.font: Input:style=Regular:pixelsize=13:antialias=true:autohint=false``` for example)
 
 ## Can I futher customize st?
-Absolutely! Take a look at the config.def.h file and make the adjustments you would like, specially on the bindings. Remember you will need to compile and install again st.\
+Absolutely! Take a look at the `config.def.h` file and make the adjustments you would like, specially on the bindings. Changes need to be done AFTER applying the patches, otherwise will fail. Remember you will need to compile and install again st.\
 Changes in the `.Xresource` file just require the good ol' `xrdb -merge ~/.Xresources` and re-open st
 
