@@ -53,5 +53,6 @@ These are global settings, it is also possible to configure them for just st by 
 (```st.font: Input:style=Regular:pixelsize=13:antialias=true:autohint=false``` for example)
 
 ## Can I futher customize st?
-Absolutely! Take a look at the config.def.h file and make the adjustments you would like, specially on the bindings
+Absolutely! Take a look at the config.def.h file and make the adjustments you would like, specially on the bindings. Remember you will need to complile and install again st.\
+Changes in the `.Xresource` file just require the good ol' `xrdb -merge ~/.Xresources` and re-open st
 
