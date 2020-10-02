@@ -18,7 +18,7 @@ The following patches are available:
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
-*Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved.
+*Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved. I also added alpha to the `Xresources` patch.
 
 Patch `7-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
 
@@ -31,7 +31,7 @@ for i in patches/*.diff; do patch < $i; done
 make
 sudo make install
 ```
-## How can I personalize colors and alpha?
+## How can I personalize fots, colors and alpha?
 Edit your ```.Xresources``` file and add the relevant colors you would like, as well as the alpha and font to use wit the following format
 ```
 *font: Monoid:style=Regular:pixelsize=12:antialias=true:autohint=false
