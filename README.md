@@ -31,7 +31,7 @@ for i in patches/*.diff; do patch < $i; done
 make
 sudo make install
 ```
-## How can I personalize fots, colors and alpha?
+## How can I personalize fonts, colors and alpha?
 Edit your ```.Xresources``` file and add the relevant colors you would like, as well as the alpha and font to use wit the following format
 ```
 *font: Monoid:style=Regular:pixelsize=12:antialias=true:autohint=false
