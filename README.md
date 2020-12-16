@@ -12,14 +12,15 @@ The following patches are available:
 * [Alpha](https://st.suckless.org/patches/alpha/) (controlled in .Xresources)
 * [Scrollback](https://st.suckless.org/patches/scrollback/) (shift+arrows)
 * [Scrollback mouse](https://st.suckless.org/patches/scrollback/) (no MOD key required)
-* [Boxdraw](https://st.suckless.org/patches/boxdraw/) *can be disabled in config*
+* [Boxdraw](https://st.suckless.org/patches/boxdraw/) (can be disabled in config)
 * [Xresources](https://st.suckless.org/patches/xresources/)
 * [Ligatures](https://st.suckless.org/patches/ligatures/)
-* [SelectionColors](st.suckless.org/patches/selectioncolors/) *can be disabled in config*
+* [SelectionColors](st.suckless.org/patches/selectioncolors/) (can be disabled in config)
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
-Note that I am not the author of any of the patches. Credit is for these amazing authors. The work of this repo is to resolve conflicts when applying multiple patches that touch the same files. Because of this, patches *need* to be applied in order.
+\*Note: I am not the author of any of the patches. Credit is for these amazing authors. The work of this repo is to resolve conflicts when applying multiple patches that touch the same files. Because of this, patches *need* to be applied in order.\
+\*\*Note: In order for Alpha patch to work, you need an X compositor, such as `compton` or `picom`
 
 Patch `9-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
 
