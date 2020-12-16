@@ -12,10 +12,10 @@ The following patches are available:
 * [Alpha](https://st.suckless.org/patches/alpha/) (controlled in .Xresources)
 * [Scrollback](https://st.suckless.org/patches/scrollback/) (shift+arrows)
 * [Scrollback mouse](https://st.suckless.org/patches/scrollback/) (no MOD key required)
-* [Boxdraw](https://st.suckless.org/patches/boxdraw/)
+* [Boxdraw](https://st.suckless.org/patches/boxdraw/) *can be dissables in config*
 * [Xresources](https://st.suckless.org/patches/xresources/)
 * [Ligatures](https://st.suckless.org/patches/ligatures/)
-* [SelectionColors](st.suckless.org/patches/selectioncolors/)
+* [SelectionColors](st.suckless.org/patches/selectioncolors/) *can be disabled in config*
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
@@ -60,6 +60,6 @@ These are global settings, it is also possible to configure them for just st by 
 (```st.font: Input:style=Regular:pixelsize=13:antialias=true:autohint=false``` for example)
 
 ## Can I futher customize st?
-Absolutely! Take a look at the `config.def.h` file and make the adjustments you would like, specially on the bindings. Changes need to be done AFTER applying the patches, otherwise will fail. Remember you will need to compile and install again st.\
+Absolutely! Take a look at the `config.def.h` file and make the adjustments you would like, specially on the bindings. Changes need to be done AFTER applying the patches, otherwise will fail. If you already compiled st, then please edit `config.h` file instead. Remember you will need to compile and install again st.\
 Changes in the `.Xresource` file just require the good ol' `xrdb -merge ~/.Xresources` and re-open st
 
