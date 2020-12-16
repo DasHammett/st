@@ -12,7 +12,7 @@ The following patches are available:
 * [Alpha](https://st.suckless.org/patches/alpha/) (controlled in .Xresources)
 * [Scrollback](https://st.suckless.org/patches/scrollback/) (shift+arrows)
 * [Scrollback mouse](https://st.suckless.org/patches/scrollback/) (no MOD key required)
-* [Boxdraw](https://st.suckless.org/patches/boxdraw/) *can be dissables in config*
+* [Boxdraw](https://st.suckless.org/patches/boxdraw/) *can be disabled in config*
 * [Xresources](https://st.suckless.org/patches/xresources/)
 * [Ligatures](https://st.suckless.org/patches/ligatures/)
 * [SelectionColors](st.suckless.org/patches/selectioncolors/) *can be disabled in config*
