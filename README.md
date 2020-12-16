@@ -14,13 +14,14 @@ The following patches are available:
 * [Scrollback mouse](https://st.suckless.org/patches/scrollback/) (no MOD key required)
 * [Boxdraw](https://st.suckless.org/patches/boxdraw/)
 * [Xresources](https://st.suckless.org/patches/xresources/)
-* [Ligatures](https://st.suckless.org/patches/ligatures/)*
+* [Ligatures](https://st.suckless.org/patches/ligatures/)
+* [SelectionColors](st.suckless.org/patches/selectioncolors/)
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
-*Note that I am not the author of any of the patches. Credit is for these amazing authors. The patch for LIGATURE is custom made from the available patches, where conflicts between several LIGATURE patches are resolved. I also added alpha to the `Xresources` patch.
+Note that I am not the author of any of the patches. Credit is for these amazing authors. The work of this repo is to resolve conflicts when applying multiple patches that touch the same files. Because of this, patches *need* to be applied in order.
 
-Patch `7-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
+Patch `9-config.diff` contains some configs, feel free to change them to your liking. More options are available. See below
 
 
 ## Installation for dummies
