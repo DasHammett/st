@@ -15,7 +15,7 @@ The following patches are available:
 * [Boxdraw](https://st.suckless.org/patches/boxdraw/) (can be disabled in config)
 * [Xresources](https://st.suckless.org/patches/xresources/)
 * [Ligatures](https://st.suckless.org/patches/ligatures/)
-* [SelectionColors](st.suckless.org/patches/selectioncolors/) (can be disabled in config)
+* [SelectionColors](https://st.suckless.org/patches/selectioncolors/) (can be disabled in config)
 
 In order for ligatures to show in the terminal, you will need a font that supports those. A good example is [Monoid](https://github.com/larsenwork/monoid)
 
