@@ -535,10 +535,11 @@ index d978458..a6c382a 100644
  /* config.h globals */
  extern char *utmp;
  extern char *scroll;
-@@ -122,4 +131,5 @@ extern char *termname;
+@@ -122,5 +131,6 @@ extern char *termname;
  extern unsigned int tabspaces;
  extern unsigned int defaultfg;
  extern unsigned int defaultbg;
+ extern unsigned int defaultcs;
  extern float alpha;
 +extern const int boxdraw, boxdraw_bold, boxdraw_braille;
 diff --git a/x.c b/x.c
