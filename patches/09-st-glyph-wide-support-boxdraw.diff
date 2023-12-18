@@ -47,10 +47,10 @@ index bf6bbf9..1311c0d 100644
  {
  	int charlen = len * ((base.mode & ATTR_WIDE) ? 2 : 1);
  	int winx = borderpx + x * win.cw, winy = borderpx + y * win.ch,
-@@ -1498,51 +1498,44 @@
-	if (base.mode & ATTR_INVISIBLE)
-		fg = bg;
-
+@@ -1514,51 +1498,44 @@
+ 	if (base.mode & ATTR_INVISIBLE)
+ 		fg = bg;
+ 
 -	/* Intelligent cleaning up of the borders. */
 -	if (x == 0) {
 -		xclear(0, (y == 0)? 0 : winy, borderpx,
@@ -85,17 +85,13 @@ index bf6bbf9..1311c0d 100644
 -
 -	/* Render underline and strikethrough. */
 -	if (base.mode & ATTR_UNDERLINE) {
--		XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent + 1,
+-		XftDrawRect(xw.draw, fg, winx, winy + dc.font.ascent * chscale + 1,
 -				width, 1);
 -	}
 -
 -	if (base.mode & ATTR_STRUCK) {
--		XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent / 3,
+-		XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent * chscale / 3,
 -				width, 1);
--	}
--
--	/* Reset clip to none. */
--	XftDrawSetClip(xw.draw, 0);
 +	if (dmode & DRAW_BG) {
 +	    /* Intelligent cleaning up of the borders. */
 +	    if (x == 0) {
@@ -133,9 +129,12 @@ index bf6bbf9..1311c0d 100644
 +	        XftDrawRect(xw.draw, fg, winx, winy + 2 * dc.font.ascent / 3,
 +	                width, 1);
 +	    }
-+	}
+ 	}
+-
+-	/* Reset clip to none. */
+-	XftDrawSetClip(xw.draw, 0);
  }
-
+ 
  void
 @@ -1524,7 +1518,7 @@ xdrawglyph(Glyph g, int x, int y)
  	XftGlyphFontSpec spec;
